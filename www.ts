@@ -5,6 +5,8 @@ import { getUrl, newShort } from "./shorty.ts"
 const router = new Router();
 router
   .get("/", (context: any) => {
+    console.log(Deno.env.get("APP_ID") || "");
+
     context.response.headers.set("Content-Type", "text/html");
     context.response.body = "<form action=/api/new method=post><label for=url>URL</label><br><input type=text id=url name=url><br><button>Click Me!</button></form>";
   })

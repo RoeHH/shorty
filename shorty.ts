@@ -5,7 +5,6 @@ import {
 import { naturalToRoman } from "https://deno.land/x/roman_number_utils@1.0.1/mod.ts";
 import "https://deno.land/x/dotenv@v3.2.0/load.ts";
 
-console.log(Deno.env.get("APP_ID") || "");
 
 
 const client = new MongoClient({
