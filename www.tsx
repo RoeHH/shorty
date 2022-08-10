@@ -15,7 +15,7 @@ serve(router(
     "/": () => ssr(() => <App/>),
     "/favicon.ico": async () => await fetch("https://www.roeh.ch/img/logo.png"),
     "/:short": async (req:Request) => {
-      const { url, short } = await getUrl(new URL(req.url).search);
+      const { url, short } = await getUrl(req.url.substring(new URL(req.url).origin.length + 1));
       if (url !== "") {
           return Response.redirect(url)
       } else {
@@ -23,7 +23,7 @@ serve(router(
       }
     },
     "/api/get/:short": async (req:Request) => {
-      return new Response(JSON.stringify(await getUrl(new URL(req.url).search)), {
+      return new Response(JSON.stringify(await getUrl(req.url.substring(new URL(req.url).origin.length + 9))), {
         headers: { "content-type": "application/json; charset=utf-8" },
       })
     },
