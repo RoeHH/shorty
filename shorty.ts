@@ -33,8 +33,3 @@ export async function newShort(url: string): Promise<{url:string, short:string}>
   });
   return { url, short };
 }
-
-export async function getUrl(short: string): Promise<{url:string, short:string}> {
-  const url = await shorts.findOne({ short: short.toUpperCase() });  
-  return url ? { url: url.url, short } : { url: "", short };
-}
